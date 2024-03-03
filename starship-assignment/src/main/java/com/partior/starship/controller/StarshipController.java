@@ -30,10 +30,19 @@ public class StarshipController {
 
 	@GetMapping("/async/information/{id}")
 	public CompletableFuture<ResponseEntity<StarshipAPIResponse>> getAsyncStarshipInfo(@PathVariable("id") String id) {
-		CompletableFuture<StarshipAPIResponse> future = CompletableFuture
-				.supplyAsync(() -> starshipService.fetchInformationAsync(id));
-		logger.info("Post api fire....");
+		CompletableFuture<StarshipAPIResponse> future = starshipService.pollStarWarsInformationAsync(id);
+		sleep();
+		logger.info("Post first sleep");
 		return future.thenApply(ResponseEntity::ok);
+	}
+
+	private void sleep() {
+		logger.info("Inside sleep method......");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -51,10 +51,8 @@ public class StarshipService {
 	 */
 	public StarshipService(@Value("${swapi.url}") String swapiUrl) {
 		this.swapiUrl = swapiUrl;
-		this.rs = new RequestSpecBuilder().setProxy("http://www-proxy.us.oracle.com:80").setBaseUri(swapiUrl)
-				.setRelaxedHTTPSValidation().build();
-		this.rsWithoutBaseUri = new RequestSpecBuilder().setProxy("http://www-proxy.us.oracle.com:80")
-				.setRelaxedHTTPSValidation().build();
+		this.rs = new RequestSpecBuilder().setBaseUri(swapiUrl).setRelaxedHTTPSValidation().build();
+		this.rsWithoutBaseUri = new RequestSpecBuilder().setRelaxedHTTPSValidation().build();
 	}
 
 	/**
@@ -89,15 +87,22 @@ public class StarshipService {
 		return starshipAPIResponse;
 	}
 
-	public StarshipAPIResponse fetchInformationAsync(final String id) {
-		// Simulating async operation
-		try {
-			LOGGER.info("Explicit deplay of 5 seconds .....");
-			Thread.sleep(5000); // Simulating a delay of 5 seconds
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		return fetchInformation(id);
+	public CompletableFuture<StarshipAPIResponse> pollStarWarsInformationAsync(final String id) {
+		// Polling implementation
+		CompletableFuture<StarshipAPIResponse> future = new CompletableFuture<>();
+		new Thread(() -> {
+			try {
+				StarshipAPIResponse starshipAPIResponse = null;
+				while (starshipAPIResponse == null) {
+					starshipAPIResponse = fetchInformation(id);
+					Thread.sleep(5000); // Poll every 5 seconds
+				}
+				future.complete(starshipAPIResponse);
+			} catch (InterruptedException e) {
+				future.completeExceptionally(e);
+			}
+		}).start();
+		return future;
 	}
 
 	private boolean isLeiaOnPlanet() {

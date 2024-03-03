@@ -2,13 +2,20 @@ package com.partior.starship.dao;
 
 import java.util.List;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Starship {
 	private String name;
 	private String model;
-	private List<String> pilots;
-	private List<String> films;
 	private String starShipClass;
 }
