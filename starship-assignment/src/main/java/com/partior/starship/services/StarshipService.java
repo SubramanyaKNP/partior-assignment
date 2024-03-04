@@ -87,6 +87,17 @@ public class StarshipService {
 		return starshipAPIResponse;
 	}
 
+	/**
+	 * Asynchronously polls Star Wars information using the provided ID.
+	 * This method polls the information periodically until it receives a response.
+	 * The polling interval is every 5 seconds.
+	 * 
+	 * @param id The ID to be used for polling Star Wars information.
+	 * @return A CompletableFuture representing the asynchronous result of the polling operation.
+	 *         The CompletableFuture will complete with a {@link StarshipAPIResponse} object when the information is fetched successfully.
+	 *         If an error occurs during the polling process, the CompletableFuture will complete exceptionally with the respective exception.
+	 * @author subramanya
+	 */
 	public CompletableFuture<StarshipAPIResponse> pollStarWarsInformationAsync(final String id) {
 		// Polling implementation
 		CompletableFuture<StarshipAPIResponse> future = new CompletableFuture<>();
@@ -105,6 +116,13 @@ public class StarshipService {
 		return future;
 	}
 
+	/**
+	 * Checks if Princess Leia is on a planet.
+	 * This method queries the Star Wars API to determine if Princess Leia is present on a planet.
+	 * 
+	 * @return {@code true} if Princess Leia is on a planet, {@code false} otherwise.
+	 * @author subramanya
+	 */
 	private boolean isLeiaOnPlanet() {
 		Response response = RestAssured.given(rs).get("/planets");
 		List<String> planetsList = response.jsonPath().getList("results.name");

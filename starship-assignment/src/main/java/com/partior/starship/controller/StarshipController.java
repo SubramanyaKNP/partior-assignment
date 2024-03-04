@@ -21,6 +21,14 @@ public class StarshipController {
 	@Autowired
 	private StarshipService starshipService;
 
+	/**
+	 * Retrieves Starship information synchronously for the provided ID.
+	 * This method fetches Starship information for the specified ID synchronously and returns it as a ResponseEntity.
+	 * 
+	 * @param id The ID used to fetch Starship information.
+	 * @return A ResponseEntity containing the {@link StarshipAPIResponse} object representing the Starship information.
+	 * @author subramanya
+	 */
 	@GetMapping("/information/{id}")
 	public ResponseEntity<StarshipAPIResponse> getStarshipInfo(@PathVariable("id") String id) {
 		StarshipAPIResponse sr = starshipService.fetchInformation(id);
@@ -28,6 +36,16 @@ public class StarshipController {
 		return ResponseEntity.ok(sr);
 	}
 
+	/**
+	 * Retrieves Starship information asynchronously for the provided ID.
+	 * This method initiates an asynchronous process to fetch Starship information for the specified ID and returns a CompletableFuture.
+	 * 
+	 * @param id The ID used to fetch Starship information asynchronously.
+	 * @return A CompletableFuture representing the asynchronous result of fetching Starship information.
+	 *         The CompletableFuture will complete with a ResponseEntity containing the {@link StarshipAPIResponse} object
+	 *         representing the fetched Starship information when the asynchronous operation is completed.
+	 * @author subramanya
+	 */
 	@GetMapping("/async/information/{id}")
 	public CompletableFuture<ResponseEntity<StarshipAPIResponse>> getAsyncStarshipInfo(@PathVariable("id") String id) {
 		CompletableFuture<StarshipAPIResponse> future = starshipService.pollStarWarsInformationAsync(id);

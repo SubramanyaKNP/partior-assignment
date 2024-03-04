@@ -14,6 +14,14 @@ public class GlobalErrorHandler implements ErrorController {
 
 	private static final Logger logger = LogManager.getLogger(GlobalErrorHandler.class);
 
+	/**
+	 * Handles exceptions of type {@link Exception} thrown by the controller.
+	 * This method logs the exception and returns an appropriate error response to the client.
+	 * 
+	 * @param ex The exception that occurred.
+	 * @return A ResponseEntity containing an error message and the status code {@link HttpStatus#INTERNAL_SERVER_ERROR}.
+	 * @author subramanya
+	 */
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
 	public ResponseEntity<String> handleException(Exception ex) {

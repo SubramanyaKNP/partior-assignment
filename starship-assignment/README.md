@@ -7,6 +7,9 @@ This project provides an API to retrieve information related to the Star Wars un
 ## System Requirements
 - Java 8 or higher
 - Spring Boot 3.X
+- TestNg 7.X
+- Mockito 5.X
+- Lombok
 - Maven
 
 ## Setup Instructions
