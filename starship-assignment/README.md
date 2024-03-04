@@ -2,7 +2,7 @@
 # Star Wars Information API
 
 ## Description
-This project provides an API to retrieve information related to the Star Wars universe, including details about starships, crew members on the Death Star, and the presence of Princess Leia on Alderaan. Refer to https://swapi.dev/
+This project provides an API to retrieve information related to the Star Wars, including details about starships, crew members on the Death Star, and the presence of Princess Leia on Alderaan. Refer to https://swapi.dev/
 
 ## System Requirements
 - Java 8 or higher
@@ -20,17 +20,12 @@ This project provides an API to retrieve information related to the Star Wars un
 
 2. Navigate to the project directory:
    ```bash
-   cd star-wars-api
+   cd starship-assignment
    ```
-
-3. Build the project:
+3. Run the application:
    ```bash
-   mvn clean install
-   ```
-
-4. Run the application:
-   ```bash
-   java -jar target/star-wars-api.jar
+   mvn clean install -DskipTests
+   mvn spring-boot:run
    ```
    The application will start and be accessible at `http://localhost:8080`.
 
