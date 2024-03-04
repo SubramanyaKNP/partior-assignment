@@ -81,6 +81,7 @@ The project includes unit tests and integration tests to validate the code and t
 mvn test
 ```
 ## Test Cases for starship assignment
+Work in progress .......
 
 <details>
 
@@ -117,17 +118,6 @@ mvn test
 2. Call fetchInformation() method.
 3. Assert that the service class handles the error gracefully and returns an appropriate response.
 
-### Invalid Response Structure
-
-### Description:
-- Mock a response from SWAPI with an invalid structure (e.g., missing required fields).
-- Verify that the service class handles the invalid response structure and returns an appropriate response or throws an exception.
-
-### Test Steps:
-1. Mock SWAPI response with an invalid structure.
-2. Call fetchInformation() method.
-3. Assert that the service class handles the invalid response structure appropriately.
-
 ### Concurrent Access
 
 ### Description:
@@ -149,43 +139,9 @@ mvn test
 2. Verify that the endpoint returns immediately.
 3. Verify that the client can receive the response asynchronously.
 
-### Polling Endpoint
-
-### Description:
-- Implement a polling mechanism to check for the response from the async endpoint.
-- Test the polling endpoint to ensure that it correctly retrieves the response when available.
-
-### Test Steps:
-1. Implement a polling mechanism to check for the response from the async endpoint.
-2. Test the polling endpoint to ensure that it correctly retrieves the response when available.
-
-### Error Handling for Async Endpoint
-
-### Description:
-- Mock an error scenario when accessing the async endpoint.
-- Verify that the error is handled correctly, and appropriate error responses are returned.
-
 ### Test Steps:
 1. Mock an error scenario when accessing the async endpoint.
 2. Verify that the error is handled correctly, and appropriate error responses are returned.
-
-## Integration Tests
-
-### Description:
-- Write integration tests to validate the behavior of the entire system, including interactions with SWAPI.
-- Use tools like WireMock to mock SWAPI responses for integration testing.
-
-### Test Steps:
-1. Write integration tests to validate the behavior of the entire system.
-2. Mock SWAPI responses using tools like WireMock for integration testing.
-
-### Boundary Conditions
-
-### Description:
-- Test edge cases such as empty response from SWAPI, maximum/minimum values for crew count, etc.
-
-### Test Steps:
-1. Test edge cases such as empty response from SWAPI, maximum/minimum values for crew count, etc.
 
 </details>
 
